@@ -1,0 +1,3 @@
+files:
+  - source: /my-react-app/blob/main/README.md
+    translation: my-react-app/%two_letters_code%/%original_file_name%
