@@ -16,8 +16,6 @@ export const App = () => {
     dispatch(fetchContacts());
   }, [dispatch])
 
-  console.log('app');
-
   return (
     <div>
       <ContactForm />

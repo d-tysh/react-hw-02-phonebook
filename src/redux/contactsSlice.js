@@ -29,21 +29,9 @@ const contactsSlice = createSlice({
             .addCase(fetchContacts.rejected, handleRejected)
 
             .addCase(addContact.pending, handlePending)
-            .addCase(addContact.fulfilled, {
-                reducer(state, action) {
-                    state.isLoading = false;
-                    state.error = null;
-                    state.items.push(action.payload)
-                },
-                prepare (name, phone) {
-                    return {
-                        payload: {
-                            id: nanoid(),
-                            name,
-                            phone
-                        }
-                    }
-                }
+            .addCase(addContact.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.items.push(action.payload);
             })
             .addCase(addContact.rejected, handleRejected)
 

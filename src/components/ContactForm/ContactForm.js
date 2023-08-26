@@ -1,5 +1,6 @@
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { nanoid } from 'nanoid';
 
 import { Form } from './ContactForm.styled';
 import { useState } from 'react';
@@ -44,7 +45,7 @@ export const ContactForm = () => {
             return;
         }
         
-        dispatch(addContact(name, number));
+        dispatch(addContact({name, number, id: nanoid()}))
         resetForm();
     }
 
