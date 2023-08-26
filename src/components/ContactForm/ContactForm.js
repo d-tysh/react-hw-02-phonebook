@@ -4,8 +4,8 @@ import * as Yup from 'yup';
 import { Form } from './ContactForm.styled';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/contactsSlice';
+import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 
 const schema = Yup.object().shape({
     name: Yup.string().min(2).max(30).matches(/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/, "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"),
@@ -16,7 +16,7 @@ export const ContactForm = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
-    const contacts = useSelector(getContacts);
+    const contacts = useSelector(selectContacts);
 
     const dispatch = useDispatch();
 
