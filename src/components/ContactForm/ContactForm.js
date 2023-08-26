@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { Form } from './ContactForm.styled';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/operations';
 
 const schema = Yup.object().shape({
