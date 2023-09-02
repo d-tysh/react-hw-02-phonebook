@@ -1,15 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "pages/Layout";
-// import { Home } from "pages/Home";
-// import { Contacts } from "pages/Contacts";
-// import { Register } from "pages/Register";
-// import { LogIn } from "pages/LogIn";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
 import { lazy, useEffect } from "react";
-import { refreshUser } from "redux/auth/operations";
-import { selectIsRefreshing } from "redux/auth/selectors";
+import { fetchCurrentUser } from "redux/auth/operations";
+import { selectIsFetchingCurrUser } from "redux/auth/selectors";
 
 const Home = lazy(() => import('../pages/Home'))
 const Contacts = lazy(() => import('../pages/Contacts'))
@@ -18,13 +14,13 @@ const LogIn = lazy(() => import('../pages/LogIn'))
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useSelector(selectIsRefreshing);
+  const { isFetchingCurrUser } = useSelector(selectIsFetchingCurrUser);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(fetchCurrentUser());
   }, [dispatch])
 
-  return isRefreshing ? <div>Refreshing user...</div> : (
+  return isFetchingCurrUser ? <div>Refreshing user...</div> : (
     <div>
       <Routes>
         <Route path='/' element={<Layout />}>
